@@ -1,40 +1,50 @@
 "use strict";
 
-var CLOUD_WIDTH = 420;
-var CLOUD_HEIGHT = 270;
-var FIRST_PLAYER_NAME_X = 110;
-var FIRST_PLAYER_NAME_Y = 75;
-var FIRST_PLAYER_BAR_X = 160;
-var FIRST_PLAYER_BAR_Y = 60;
-var FIRST_PLAYER_BAR_WIDTH = 430;
-var FIRST_PLAYER_BAR_HEIGHT = 20;
-var barWidth = CLOUD_WIDTH - GAP - TEXT_WIDTH - GAP;
+const CLOUD_X = 100;
+const CLOUD_Y = 10;
+const CLOUD_WIDTH = 420;
+const CLOUD_HEIGHT = 270;
+const GAP = 10;
+const FONT_GAP = 15;
+const TEXT_WIDTH = 50;
+const BAR_HEIGHT = 20;
+const BAR_WIDTH = CLOUD_WIDTH - GAP - TEXT_WIDTH - GAP;
 
-var renderCloud = function (ctx, x, y, color) {
+const renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
 };
 
-window.renderStatistics = function (ctx) {
-  renderCloud(ctx, 110, 20, 'rgba(0, 0, 0, 0.7)');
-  renderCloud(ctx, 100, 10, '#fff');
+const getMaxElement = function (arr) {
+  const maxElement = arr[0];
 
-  ctx.fillStyle = '#000';
-  ctx.fillText(
-    'Вы',
-    FIRST_PLAYER_NAME_X,
-    FIRST_PLAYER_NAME_Y
-  );
-  ctx.fillRect(
-    FIRST_PLAYER_BAR_X,
-    FIRST_PLAYER_BAR_Y,
-    FIRST_PLAYER_BAR_WIDTH,
-    FIRST_PLAYER_BAR_HEIGHT
-  );
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] > maxElement) {
+      maxElement = arr[i];
+    }
+  }
+  return maxElement;
+};
 
-  ctx.fillText('Иван', 110, 105);
-  ctx.fillRect(160, 90, 430, 20);
+window.renderStatistics = function (ctx, names, times) {
+  renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.7)');
+  renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
 
-  ctx.fillText('Юлия', 110, 135);
-  ctx.fillRect(160, 120, 430, 20);
+  ctx.fillStyle = `#000`;
+
+  const maxTime = getMaxElement(times);
+
+  for (let i = 0; i < names.length; i++) {
+    ctx.fillText(
+        names[i],
+        CLOUD_X + GAP,
+        CLOUD_Y + GAP + FONT_GAP + (GAP + BAR_HEIGHT) * i
+    );
+    ctx.fillRect(
+        CLOUD_X + GAP + TEXT_WIDTH,
+        CLOUD_Y + GAP + (GAP + BAR_HEIGHT) * i,
+        (BAR_WIDTH * times[i]) / maxTime,
+        BAR_HEIGHT
+    );
+  }
 };
