@@ -39,17 +39,15 @@ const getMaxElement = (arr) => {
   return maxElement;
 };
 
-
 const getRandomColor = () => `hsla(230, 60%, ${Math.random() * 75}%, 1)`;
 
 window.renderStatistics = (ctx, names, times) => {
+  const maxTime = getMaxElement(times);
+
   renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, `rgba(0, 0, 0, 0.7)`);
   renderCloud(ctx, CLOUD_X, CLOUD_Y, `#fff`);
   renderText(ctx, `Ура вы победили!`, TEXT_X, TEXT_Y);
   renderText(ctx, `Список результатов:`, TEXT_X, TEXT_Y + TEXT_GAP);
-
-
-  const maxTime = getMaxElement(times);
 
   for (let i = 0; i < names.length; i++) {
     let barX = CLOUD_X + BAR_WIDTH + (BAR_WIDTH + BAR_GAP) * i;
