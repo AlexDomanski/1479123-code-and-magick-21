@@ -40,7 +40,7 @@ const getMaxElement = (arr) => {
 };
 
 
-let barColor = () => `hsla(230, 60%, ${Math.random() * 75}%, 1)`;
+const getRandomColor = () => `hsla(230, 60%, ${Math.random() * 75}%, 1)`;
 
 window.renderStatistics = (ctx, names, times) => {
   renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, `rgba(0, 0, 0, 0.7)`);
@@ -69,7 +69,7 @@ window.renderStatistics = (ctx, names, times) => {
         CLOUD_HEIGHT - BAR_GAP - barHeight
     );
 
-    ctx.fillStyle = (names[i] === `Вы`) ? FIRST_PLAYER_COLOR : barColor();
+    ctx.fillStyle = (names[i] === `Вы`) ? FIRST_PLAYER_COLOR : getRandomColor();
 
     ctx.fillRect(
         barX,
