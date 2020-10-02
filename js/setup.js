@@ -46,7 +46,7 @@ const fragment = document.createDocumentFragment();
 
 
 const getRandomArrayElement = (array) => {
-  return array[Math.floor(Math.random() * array.length)];
+  return array[Math.round(Math.random() * array.length)];
 };
 
 const createWizard = () => {
