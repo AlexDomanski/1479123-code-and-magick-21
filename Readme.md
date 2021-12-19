@@ -1,8 +1,7 @@
 # Учебный проект «Код и Магия» [![Build status][travis-image]][travis-url]
 
 * Студент: [Alexander Domanski](https://up.htmlacademy.ru/javascript/21/user/1479123).
-* Наставник: [Пётр Двухреченский](https://htmlacademy.ru/profile/id1223515).
-
+* Наставник:
 ---
 
 _Не удаляйте и не обращайте внимание на файлы:_<br>
